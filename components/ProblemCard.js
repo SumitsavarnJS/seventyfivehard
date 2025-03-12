@@ -5,8 +5,12 @@ import { Card, CardMedia, CardContent, Typography, IconButton } from '@mui/mater
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ProblemMenu from './ProblemMenu.js';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 
 export default function ProblemCard({ problem }) {
+  const router = useRouter();
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenuClick = (event) => {
@@ -17,8 +21,14 @@ export default function ProblemCard({ problem }) {
     setAnchorEl(null);
   };
 
+  const handleDemo = () => {
+    // onClose();
+    router.push(`/problems/${problem.id}?tab=demo`);
+  };
+
+
   return (
-    <Card sx={{ maxWidth: 345, position: 'relative' }}>
+    <Card sx={{ maxWidth: 345, position: 'relative' , cursor:'pointer'}} onClick={handleDemo} > 
       <CardMedia
         component="img"
         height="140"

@@ -6,6 +6,12 @@ import { usePathname } from "next/navigation";
 
 export default function BreadcrumbsNav({ currentTitle }) {
   const pathnames = usePathname().split("/").filter((x) => x);
+
+  const handleDemo = () => {
+    // onClose();
+    router.push(`/problems/${problemId}?tab=demo`);
+  };
+
   return (
     <Breadcrumbs>
       <Link href="/">Home</Link>
