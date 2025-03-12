@@ -1,0 +1,16 @@
+[
+  {
+    "id": "counter",
+    "title": "Counter App",
+    "description": "A simple counter using React useState.",
+    "category": "js",
+    "thumbnail": "counter"
+  },
+  {
+    "id": "rainbow",
+    "title": "Rainbow Animation",
+    "description": "A CSS animation that creates a rainbow effect.",
+    "category": "css",
+    "thumbnail": "palette"
+  }
+]

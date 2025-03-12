@@ -1,39 +1,22 @@
-// components/BreadcrumbsNav.js
+
 "use client";
 
-import Link from 'next/link';
-import { Breadcrumbs, Typography, Link as MUILink } from '@mui/material';
-import { usePathname } from 'next/navigation';
+import { Breadcrumbs, Link, Typography } from "@mui/material";
+import { usePathname } from "next/navigation";
 
-export default function BreadcrumbsNav() {
-  const pathname = usePathname(); // e.g., "/problems/html-1"
-  const pathSegments = pathname.split('/').filter((seg) => seg);
-
-  let cumulativePath = '';
+export default function BreadcrumbsNav({ currentTitle }) {
+  const pathnames = usePathname().split("/").filter((x) => x);
   return (
-    <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
-      <MUILink component={Link} href="/" underline="hover" color="inherit">
-        Home
-      </MUILink>
-      {pathSegments.map((segment, index) => {
-        cumulativePath += `/${segment}`;
-        const isLast = index === pathSegments.length - 1;
-        // Format the segment (e.g., replace dashes with spaces)
-        const formattedSegment = segment.replace(/-/g, ' ');
-        return isLast ? (
-          <Typography key={cumulativePath} color="text.primary">
-            {formattedSegment}
-          </Typography>
+    <Breadcrumbs>
+      <Link href="/">Home</Link>
+      {pathnames.map((name, index) => {
+        const href = `/${pathnames.slice(0, index + 1).join("/")}`;
+        return index === pathnames.length - 1 ? (
+          <Typography key={name}>{currentTitle}</Typography>
         ) : (
-          <MUILink
-            key={cumulativePath}
-            component={Link}
-            href={cumulativePath}
-            underline="hover"
-            color="inherit"
-          >
-            {formattedSegment}
-          </MUILink>
+          <Link key={name} href={href}>
+            {name}
+          </Link>
         );
       })}
     </Breadcrumbs>
